@@ -14,7 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 @ContextConfiguration
 public class IndividualProjectApplicationTests {
 
-  /** Sets up a testing for Individual project Application. *
+  /** Sets up a testing for Individual project Application. */
   @BeforeEach
   public void setForTesting() {
     testApplication = new IndividualProjectApplication();

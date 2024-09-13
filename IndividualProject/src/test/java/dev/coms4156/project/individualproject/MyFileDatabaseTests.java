@@ -13,14 +13,13 @@ import org.junit.jupiter.api.Test;
 public class MyFileDatabaseTests {
 
   private MyFileDatabase testDatabase;
-  private Department testDepartment;
 
   /** Sets up database for testing.  */
   @BeforeEach
   public void setUpTestDatabase() {
     Map<String, Department> testDepartmentMapping = new HashMap<>();
     Map<String, Course> courseMapping = new HashMap<>();
-    testDepartment = new Department("COMS", courseMapping, "Luca Carloni", 1);
+    Department testDepartment = new Department("COMS", courseMapping, "Luca Carloni", 1);
     Course coms3251 = new Course("Tony Dear", "402 CHANDLER", "1:10-3:40", 125);
     courseMapping.put("COMS3251", coms3251);
 
