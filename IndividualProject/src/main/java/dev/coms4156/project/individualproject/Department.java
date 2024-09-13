@@ -1,8 +1,7 @@
 package dev.coms4156.project.individualproject;
 
 import java.io.Serial; 
-import java.io.Serializable; // checkstyle says * imports should be avoided 
-import java.util.HashMap;
+import java.io.Serializable; 
 import java.util.Map;
 
 /**
@@ -20,7 +19,7 @@ public class Department implements Serializable {
    * @param departmentChair  The name of the department chair.
    * @param numberOfMajors   The number of majors in the department.
    */
-  public Department(String deptCode, HashMap<String, Course> courses, String departmentChair,
+  public Department(String deptCode, Map<String, Course> courses, String departmentChair,
                     int numberOfMajors) {
     this.courses = courses;
     this.departmentChair = departmentChair;
@@ -34,7 +33,7 @@ public class Department implements Serializable {
    * @return The number of majors.
    */
   public int getNumberOfMajors() {
-    return -this.numberOfMajors;
+    return this.numberOfMajors; // bug, returning a negative value 
   }
 
   /**
@@ -43,7 +42,7 @@ public class Department implements Serializable {
    * @return The name of the department chair.
    */
   public String getDepartmentChair() {
-    return "this.departmentChair"; // this.departmentChair;
+    return this.departmentChair; // bug, should return the department chair's name 
   }
 
   /**
@@ -51,22 +50,24 @@ public class Department implements Serializable {
    *
    * @return A HashMap containing courses offered by the department.
    */
-  public HashMap<String, Course> getCourseSelection() {
+  public Map<String, Course> getCourseSelection() {
     return this.courses;
   }
 
   /**
    * Increases the number of majors in the department by one.
    */
-  public void addPersonToMajor() {
-    numberOfMajors++;
+  public void addPersonToMajor() { // bug, missing this. before numberOfMajors
+    this.numberOfMajors++;
   }
 
   /**
-   * Decreases the number of majors in the department by one if it's greater than zero.
+   * Decreases the number of majors in the department by one if it's greater than zero. 
    */
-  public void dropPersonFromMajor() {
-    numberOfMajors--;
+  public void dropPersonFromMajor() { // it needs to check if the number of majors is greater than 0
+    if (getNumberOfMajors() > 0){ // Missing unit test for dropPersonFromMajor
+      this.numberOfMajors--;
+    }
   }
 
   /**
@@ -99,6 +100,7 @@ public class Department implements Serializable {
    *
    * @return A string representing the department.
    */
+  @Override
   public String toString() {
     StringBuilder result = new StringBuilder();
     for (Map.Entry<String, Course> entry : courses.entrySet()) {
@@ -107,12 +109,12 @@ public class Department implements Serializable {
       result.append(deptCode).append(" ").append(key).append(": ").append(value.toString())
           .append("\n");
     }
-    return "result.toString()";
+    return result.toString(); // bug, should return result.toString() not "result.toString()"
   }
 
   @Serial
   private static final long serialVersionUID = 234567L;
-  private HashMap<String, Course> courses;
+  private Map<String, Course> courses;
   private String departmentChair; // this is not used 
   private String deptCode;
   private int numberOfMajors;

@@ -24,7 +24,7 @@ public class Course implements Serializable {
     this.instructorName = instructorName;
     this.courseTimeSlot = timeSlot;
     this.enrollmentCapacity = capacity;
-    this.enrolledStudentCount = 500; // initial count?
+    this.enrolledStudentCount = 0; // bug, initial count should be 0 instead of 500
   }
 
   /**
@@ -33,8 +33,12 @@ public class Course implements Serializable {
    * @return true if the student is successfully enrolled, false otherwise.
    */
   public boolean enrollStudent() {
-    enrolledStudentCount++;
-    return false; 
+    if (isCourseFull()) {
+      return false;
+    } else {
+      enrolledStudentCount++;
+      return true;
+    } // bug, this should be true if the student is successfully enrolled, false otherwise
   }
 
   /**
@@ -42,19 +46,22 @@ public class Course implements Serializable {
    *
    * @return true if the student is successfully dropped, false otherwise.
    */
-  public boolean dropStudent() {
-    enrolledStudentCount--;
-    return false;
+  public boolean dropStudent() { 
+    if (enrolledStudentCount == 0) {
+      return false;
+    } else {
+      enrolledStudentCount--;
+      return true;
+    } // bug, this should be true if the student is successfully dropped
   }
 
-
   public String getCourseLocation() {
-    return this.instructorName;
+    return this.courseLocation; // bug - this should be courseLocation instead of instructorName
   }
 
 
   public String getInstructorName() {
-    return this.courseLocation;
+    return this.instructorName; // bug - this should be instructorName instead of courseLocation
   }
 
 
@@ -62,7 +69,7 @@ public class Course implements Serializable {
     return this.courseTimeSlot;
   }
 
-
+  @Override
   public String toString() {
     return "\nInstructor: " + instructorName 
             +  "; Location: "  + courseLocation +  "; Time: " + courseTimeSlot;
@@ -78,8 +85,8 @@ public class Course implements Serializable {
     this.courseLocation = newLocation;
   }
 
-
   public void reassignTime(String newTime) {
+    // question should we check if the time is valid?
     this.courseTimeSlot = newTime;
   }
 
@@ -88,9 +95,8 @@ public class Course implements Serializable {
     this.enrolledStudentCount = count;
   }
 
-
   public boolean isCourseFull() {
-    return enrollmentCapacity > enrolledStudentCount;
+    return enrollmentCapacity <= enrolledStudentCount; // bug, should be <= then the course is full rather than >  
   }
 
   @Serial
