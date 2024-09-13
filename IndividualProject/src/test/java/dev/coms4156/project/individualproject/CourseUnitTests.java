@@ -83,10 +83,7 @@ public class CourseUnitTests {
     testCourse.setEnrolledStudentCount(245);
     assertFalse(testCourse.isCourseFull());
   }
-  // 100% Test Coverage
 
   /** The test course instance used for testing. */
   public static Course testCourse;
 }
-
-// this is the incomplete test suite

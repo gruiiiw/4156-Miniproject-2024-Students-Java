@@ -24,6 +24,7 @@ public class RouteControllerTests {
 
   private RouteController routeController;
   private Department testDepartment;
+
   private Department econTestDepartment;
   private Course coms3251;
   private Course coms3827;

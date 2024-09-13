@@ -60,7 +60,6 @@ MyFileDatabase:
   Where: several locations where there is a hashmap, see pmd report for details
   Static Analyzer: LooseCoupling:
 
-
 RouteController:
 1.Issue: The HTTP ok and not found are switched. 
   Where: retrieveDepartment()

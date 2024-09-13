@@ -37,6 +37,5 @@ public class MyFileDatabaseTests {
                       + 
                       "Instructor: Tony Dear; Location: 402 CHANDLER; Time: 1:10-3:40\n";
     assertEquals(expected, testDatabase.toString());
-  }
-  
+  }  
 }
