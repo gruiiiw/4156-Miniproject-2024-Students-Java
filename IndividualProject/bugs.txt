@@ -82,6 +82,14 @@ RouteController:
   Where: handleException()
   Static Analyzer: Found through unit testing
 
+6.Issue: Use of hashmap instead of map
+  Where: instances where there is hashmap
+  Static Analyzer: LooseCoupling
+
+7.Issue: Avoid the use of value when there is only one element
+  Where: instances where there is one element
+  Static Analyzer: UnnecessaryAnnotationValueElement:
+
 Pmd report:
 src\main\java\dev\coms4156\project\individualproject\Department.java:23:	LooseCoupling:	Avoid using implementation types like 'HashMap'; use the interface instead
 src\main\java\dev\coms4156\project\individualproject\Department.java:54:	LooseCoupling:	Avoid using implementation types like 'HashMap'; use the interface instead
